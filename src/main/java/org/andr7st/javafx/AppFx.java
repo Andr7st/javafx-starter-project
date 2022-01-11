@@ -14,17 +14,18 @@ public class AppFx extends Application {
     public void start(Stage mainScene) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AppFx.class.getResource("/org/andr7st/javafx/AppFxView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        mainScene.setTitle("Starter JavaFx | by Andr7st");
+        mainScene.setTitle("JavaFx | Andr7st");
         mainScene.setResizable(false);
         mainScene.setScene(scene);
         mainScene.centerOnScreen();
-        try {
-            mainScene.getIcons()
-                    .add(new Image(Objects.requireNonNull(
-                            AppFx.class.getResourceAsStream("/org/andr7st/javafx/favicon.png"))));
-        } catch (Exception ignore) {}
-
+        this.addIcon(mainScene, "/org/andr7st/javafx/favicon.png");
         mainScene.show();
+    }
+
+    public static void addIcon(Stage stage, String srcIcon) {
+        try {
+            stage.getIcons().add(new Image(Objects.requireNonNull(AppFx.class.getResourceAsStream(srcIcon))));
+        } catch (Exception ignored) {}
     }
 
     public static void main(String[] args) {
